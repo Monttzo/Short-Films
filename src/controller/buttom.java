@@ -17,6 +17,7 @@ public class buttom implements ActionListener{
     public cortoDocumentalesDAOJD consulta= new cortoDocumentalesDAOJD();
     public ArrayList<directores> misDirectores = new ArrayList<>();
     public int c;
+    public int i;
     /**
      * 
      * @param marco 
@@ -33,22 +34,21 @@ public class buttom implements ActionListener{
         String filtroColumna=(String)marco.comboBox.getSelectedItem();
         String filtroString=marco.Filtro.getText();
         misDirectores = consulta.Consultar(filtroColumna, filtroString);
+        i = 0;
         c = 0;
-        limpiarTextArea();
-            while (c < misDirectores.size()) {                
-                marco.textArea.append(misDirectores.get(c).getId());
-                marco.textArea.append(", ");
-                marco.textArea.append(misDirectores.get(c).getNombre());
-                marco.textArea.append(", ");
-                marco.textArea.append(misDirectores.get(c).getApellido());
-                marco.textArea.append(", ");
-                marco.textArea.append(misDirectores.get(c).getNacionalidad());
-                marco.textArea.append("\n");
+        String [] header = {"id","Nombre","Apellido","Nacionalidad"};
+        String [][] datos = new String[misDirectores.size()][4];
+            while (c < misDirectores.size()) {
+                i = 0;
+                while(i < 4){
+                    datos[c][i] = misDirectores.get(c).opcion(i);
+                    System.out.println(misDirectores.get(c).opcion(i));
+                    i++;
+                }
+                System.out.println(c);
                 c++;
-                
-            }misDirectores.clear();		
-    }
-    public void limpiarTextArea(){
-        marco.textArea.setText(null);
+            }
+            marco.crearTabla(datos, header);
+            misDirectores.clear();		
     }
 }

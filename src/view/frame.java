@@ -8,8 +8,10 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 /**
  * 
  * @author ADMIN
@@ -25,6 +27,8 @@ public class frame extends JFrame {
     public JTextArea textArea;
     public JTextField Filtro;
     public JLabel labelFiltro;
+    public JTable tabla;
+    public DefaultTableModel mod;
     /**
      * Metodo Constructor
      */
@@ -70,16 +74,22 @@ public class frame extends JFrame {
         btnNewButton.setBounds(341, 204, 85, 21);
         contentPane.add(btnNewButton);
         /**
-         * Crea un area de texto
-         */
-        textArea = new JTextArea();
-        textArea.setBounds(10, 10, 416, 173);
-        contentPane.add(textArea);
-        textArea.setEditable(false);
-        /**
          * Crea los action listener
          */
         btnNewButton.addActionListener(new buttom(this));
         addWindowListener(new loadCheckBox(this));
+    }
+    /**
+     * Crea una tabla
+     * @param datos
+     * @param header 
+     */
+    public void crearTabla(String[][] datos, String[] header){
+        mod = new DefaultTableModel(datos,header);
+        tabla = new JTable(mod);
+        JScrollPane scroll = new JScrollPane(tabla);
+        scroll.setBounds(10, 10, 416, 173);
+        contentPane.add(scroll);
+        tabla.enable(false);
     }
 }

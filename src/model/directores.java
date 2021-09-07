@@ -27,4 +27,21 @@ public class directores {
     public String getNacionalidad(){
         return nacionalidad;
     }
+    public String opcion (int i){
+        switch(i){
+            case (0) -> {
+                return getId();
+            }
+            case (1) -> {
+                return getNombre();
+            }
+            case (2) -> {
+                return getApellido();
+            }
+            case (3) -> {
+                return getNacionalidad();
+            }
+        }
+        return null;
+    }
 }
