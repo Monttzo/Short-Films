@@ -12,8 +12,8 @@ import javax.swing.border.EmptyBorder;
  * @author ADMIN
  */
 public class alertframe extends JFrame {
+    public int opcion;
     public JLabel labelAlert1;
-    public JLabel labelAlert2;
     public JPanel contentPane;
     /**
      * Metodo constructor
@@ -41,10 +41,27 @@ public class alertframe extends JFrame {
         /**
          * Crea un label para mostrar el texto de la alerta
          */
-        labelAlert1 = new JLabel("Casilla de filtro vacia o Usuario inexistente");
-        labelAlert1.setBounds(10, 20, 300, 21);
-        contentPane.add(labelAlert1);
+        
             
         
+    }
+    public void opcion(int opcion){
+        switch(opcion){
+            case 1 -> {
+                labelAlert1 = new JLabel("Casilla de filtro vacia o Usuario inexistente");
+                labelAlert1.setBounds(10, 20, 300, 21);
+                contentPane.add(labelAlert1);
+            }
+            case 2 -> {
+                labelAlert1 = new JLabel("Casillas vacias o invalidas");
+                labelAlert1.setBounds(10, 20, 300, 21);
+                contentPane.add(labelAlert1);
+            }
+            case 3 -> {
+                labelAlert1 = new JLabel("Usuario registrado correctamente");
+                labelAlert1.setBounds(10, 20, 300, 21);
+                contentPane.add(labelAlert1);
+            }
+        }
     }
 }

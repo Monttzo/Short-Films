@@ -2,7 +2,8 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import controller.buttom;
+import controller.buttomPrimeroRegistrar;
+import controller.buttomConsultar;
 import controller.loadCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -23,6 +24,7 @@ public class frame extends JFrame {
     private JPanel contentPane;
     public JComboBox comboBox;
     public JComboBox comboBox_1;
+    public JButton btnNewButton2;
     public JButton btnNewButton;
     public JTextArea textArea;
     public JTextField Filtro;
@@ -68,6 +70,12 @@ public class frame extends JFrame {
         Filtro.setBounds(140, 204, 85, 21);
         contentPane.add(Filtro);
         /**
+         * Crea un boton para registrar
+         */
+        btnNewButton2 = new JButton("Registrar");
+        btnNewButton2.setBounds(241, 204, 89, 21);
+        contentPane.add(btnNewButton2);
+        /**
          * Crea un boton para buscar
          */
         btnNewButton = new JButton("Buscar");
@@ -76,7 +84,8 @@ public class frame extends JFrame {
         /**
          * Crea los action listener
          */
-        btnNewButton.addActionListener(new buttom(this));
+        btnNewButton2.addActionListener(new buttomPrimeroRegistrar(this));
+        btnNewButton.addActionListener(new buttomConsultar(this));
         addWindowListener(new loadCheckBox(this));
     }
     /**

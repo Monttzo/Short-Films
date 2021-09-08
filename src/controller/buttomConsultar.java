@@ -12,7 +12,7 @@ import view.frame;
  * 
  * @author ADMIN
  */
-public class buttom implements ActionListener{
+public class buttomConsultar implements ActionListener{
     public frame marco;
     public cortoDocumentalesDAOJD consulta= new cortoDocumentalesDAOJD();
     public ArrayList<directores> misDirectores = new ArrayList<>();
@@ -22,7 +22,7 @@ public class buttom implements ActionListener{
      * 
      * @param marco 
      */
-    public buttom(frame marco) {
+    public buttomConsultar(frame marco) {
         this.marco= marco;
     }
     /**

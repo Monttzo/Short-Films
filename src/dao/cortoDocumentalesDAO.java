@@ -7,6 +7,7 @@ package dao;
 
 import java.util.ArrayList;
 import model.directores;
+import view.frameRegistrar;
 
 /**
  *
@@ -14,5 +15,6 @@ import model.directores;
  */
 public interface cortoDocumentalesDAO {
     public ArrayList<directores> Consultar(String filtroColumna, String filtroString);
+    public void Registrar(frameRegistrar marco, String Nombre, String Apellido, String Nacionalidad);
     
 }

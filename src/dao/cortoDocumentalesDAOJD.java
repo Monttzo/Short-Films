@@ -2,8 +2,11 @@ package dao;
 import java.sql.*;
 import Util.Connection_M;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.directores;
 import view.alertframe;
+import view.frameRegistrar;
 /**
  * 
  * @author ADMIN
@@ -17,6 +20,7 @@ public class cortoDocumentalesDAOJD implements cortoDocumentalesDAO{
     public String query3 = "Select * from director where apellidoDirector =?";
     public String query4 = "Select * from director where nacionalidadDirector =?";
     public ArrayList<directores> misDirectores = new ArrayList<>();
+    public String queryRegistrar = "Insert into director (nombreDirector, apellidoDirector, nacionalidadDirector) values (?,?,?)";
     /**
      * 
      */
@@ -62,6 +66,7 @@ public class cortoDocumentalesDAOJD implements cortoDocumentalesDAO{
                         resulconsult.close();
                     }else {
                         alertframe alertframe = new alertframe();
+                        alertframe.opcion(1);
                         alertframe.setVisible(true);
                     }
                 }
@@ -82,6 +87,7 @@ public class cortoDocumentalesDAOJD implements cortoDocumentalesDAO{
                         resulconsult.close();
                     } else {
                         alertframe alertframe = new alertframe();
+                        alertframe.opcion(1);
                         alertframe.setVisible(true);
                     }
                 }
@@ -102,6 +108,7 @@ public class cortoDocumentalesDAOJD implements cortoDocumentalesDAO{
                         resulconsult.close();
                     } else {
                         alertframe alertframe = new alertframe();
+                        alertframe.opcion(1);
                         alertframe.setVisible(true);
                     }
                 }
@@ -110,6 +117,32 @@ public class cortoDocumentalesDAOJD implements cortoDocumentalesDAO{
             System.out.println("fallo faltal");
         }
         return misDirectores;	
+    }
+    /**
+     * 
+     * @param marco
+     * @param Nombre
+     * @param Apellido
+     * @param Nacionalidad 
+     */
+    @Override
+    public void Registrar(frameRegistrar marco, String Nombre, String Apellido, String Nacionalidad) {
+        try {
+            Connection conetda=conett.give_me_connection();
+            enviaconsulta = conetda.prepareStatement(queryRegistrar);
+            enviaconsulta.setString(1,Nombre);
+            enviaconsulta.setString(2, Apellido);
+            enviaconsulta.setString(3, Nacionalidad);
+            int rowsUpdated = enviaconsulta.executeUpdate();
+            if (rowsUpdated > 0){
+                alertframe alertframe = new alertframe();
+                alertframe.opcion(3);
+                alertframe.setVisible(true);
+                marco.setVisible(false);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(cortoDocumentalesDAOJD.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 	
 
