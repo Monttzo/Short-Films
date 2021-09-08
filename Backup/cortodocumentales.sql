@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-09-2021 a las 11:10:52
+-- Tiempo de generación: 09-09-2021 a las 01:54:48
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.9
 
@@ -35,24 +35,25 @@ CREATE TABLE IF NOT EXISTS `director` (
   `nombreDirector` varchar(25) NOT NULL,
   `apellidoDirector` varchar(25) NOT NULL,
   `nacionalidadDirector` varchar(20) NOT NULL,
-  PRIMARY KEY (`nombreDirector`),
+  PRIMARY KEY (`idDirector`),
   UNIQUE KEY `idDirector` (`idDirector`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
-
---
--- RELACIONES PARA LA TABLA `director`:
---
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `director`
 --
 
-INSERT INTO `director` VALUES
-(4, 'Carol', 'Dysinger', 'Estadounidense'),
-(3, 'Daan', 'Bol', 'Neerlandes'),
-(5, 'Rayka', 'Zehtabchi', 'Inrani'),
+INSERT INTO `director` (`idDirector`, `nombreDirector`, `apellidoDirector`, `nacionalidadDirector`) VALUES
+(1, 'Zofia', 'Kowalewska', 'Polaca'),
 (2, 'Robin', 'Petré', 'Frances'),
-(1, 'Zofia', 'Kowalewska', 'Polaca');
+(3, 'Daan', 'Bol', 'Neerlandes'),
+(4, 'Carol', 'Dysinger', 'Estadounidense'),
+(5, 'Rayka', 'Zehtabchi', 'Inrani'),
+(6, 'Jose', 'Ignacio', 'Andorra'),
+(7, 'Miguel', 'Castaño', 'España'),
+(8, 'jhonny', 'gil', 'Colombiano'),
+(9, 'Daniel', 'Monsalve', 'Colombiano'),
+(10, 'Antonia', 'Narváez', 'España');
 
 -- --------------------------------------------------------
 
@@ -64,28 +65,22 @@ DROP TABLE IF EXISTS `documental`;
 CREATE TABLE IF NOT EXISTS `documental` (
   `tituloDocumental` varchar(100) NOT NULL,
   `añoDocumental` int(11) NOT NULL,
-  `nombreDirectorFk` varchar(25) NOT NULL,
+  `idDirectorFk` int(11) NOT NULL,
   `paisDocumental` varchar(25) NOT NULL,
   PRIMARY KEY (`tituloDocumental`),
-  KEY `Fk_nombreDirectorFk` (`nombreDirectorFk`)
+  KEY `idDirectorFK_FK` (`idDirectorFk`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- RELACIONES PARA LA TABLA `documental`:
---   `nombreDirectorFk`
---       `director` -> `nombreDirector`
---
 
 --
 -- Volcado de datos para la tabla `documental`
 --
 
-INSERT INTO `documental` VALUES
-('Close Ties', 2016, 'Zofia', 'Polonia'),
-('Learning to Skateboard in a Warzone', 2019, 'Carol', 'Gran Bretaña'),
-('Period. End of Sentence', 2020, 'Rayka', 'India'),
-('Pulse', 2017, 'Robin', 'Hungría'),
-('Rocknrollers', 2018, 'Daan', 'Paises Bajos');
+INSERT INTO `documental` (`tituloDocumental`, `añoDocumental`, `idDirectorFk`, `paisDocumental`) VALUES
+('Close Ties', 2016, 1, 'Polonia'),
+('Learning to Skateboard in a Warzone', 2019, 1, 'Gran Bretaña'),
+('Period. End of Sentence', 2020, 1, 'India'),
+('Pulse', 2020, 1, 'Hungría'),
+('Rocknrollers', 2018, 1, 'Paises Bajos');
 
 -- --------------------------------------------------------
 
@@ -105,18 +100,10 @@ CREATE TABLE IF NOT EXISTS `transmision` (
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
 
 --
--- RELACIONES PARA LA TABLA `transmision`:
---   `aliasUsuarioFK`
---       `usuario` -> `Alias`
---   `tituloDocumentalFK`
---       `documental` -> `tituloDocumental`
---
-
---
 -- Volcado de datos para la tabla `transmision`
 --
 
-INSERT INTO `transmision` VALUES
+INSERT INTO `transmision` (`idTransmision`, `aliasUsuarioFK`, `tituloDocumentalFK`, `fechaTransmision`) VALUES
 (1, 'lucky', 'Close Ties', '2018-10-25 20:00:00'),
 (2, 'lucky', 'Pulse', '2019-03-15 18:30:00'),
 (3, 'lucky', 'Rocknrollers', '2019-05-20 20:30:00'),
@@ -153,14 +140,10 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- RELACIONES PARA LA TABLA `usuario`:
---
-
---
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` VALUES
+INSERT INTO `usuario` (`Alias`, `nombreUsuario`, `apellidoUsuario`, `emailUsuario`, `contactoUsuario`, `claveUsuario`, `fechaRUsuario`) VALUES
 ('diva', 'Ana', 'Diaz', 'divaAna@gmail.com', 3191126003, 'diva', '2021-08-29'),
 ('dreamer', 'Luis', 'Rojas', 'dreamerLuis@gmail.com', 3043314281, 'dreamer', '2021-08-29'),
 ('green', 'Jorge', 'Rodriguez', 'greenJorge@gmail.com', 3076234631, 'green', '2021-08-29'),
@@ -178,7 +161,7 @@ INSERT INTO `usuario` VALUES
 -- Filtros para la tabla `documental`
 --
 ALTER TABLE `documental`
-  ADD CONSTRAINT `Fk_nombreDirectorFk` FOREIGN KEY (`nombreDirectorFk`) REFERENCES `director` (`nombreDirector`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `idDirectorFK_FK` FOREIGN KEY (`idDirectorFk`) REFERENCES `director` (`idDirector`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `transmision`
