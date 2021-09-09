@@ -61,6 +61,7 @@ public class cortoDocumentalesDAOJD implements cortoDocumentalesDAO{
                         }
                         if(misDirectores.isEmpty()){
                             alertframe alertframe = new alertframe();
+                            alertframe.opcion(1);
                             alertframe.setVisible(true);
                         }
                         resulconsult.close();
@@ -82,6 +83,7 @@ public class cortoDocumentalesDAOJD implements cortoDocumentalesDAO{
                         }
                         if(misDirectores.isEmpty()){
                             alertframe alertframe = new alertframe();
+                            alertframe.opcion(1);
                             alertframe.setVisible(true);
                         }
                         resulconsult.close();
@@ -103,6 +105,7 @@ public class cortoDocumentalesDAOJD implements cortoDocumentalesDAO{
                         }
                         if(misDirectores.isEmpty()){
                             alertframe alertframe = new alertframe();
+                            alertframe.opcion(1);
                             alertframe.setVisible(true);
                         }
                         resulconsult.close();

@@ -42,7 +42,6 @@ public class buttomConsultar implements ActionListener{
                 i = 0;
                 while(i < 4){
                     datos[c][i] = misDirectores.get(c).opcion(i);
-                    System.out.println(misDirectores.get(c).opcion(i));
                     i++;
                 }
                 System.out.println(c);
